@@ -1,5 +1,6 @@
 import { Roboto_400Regular, Roboto_700Bold } from "@expo-google-fonts/roboto";
 
+import { AuthContextProvider } from "@contexts/AuthContext";
 import { Loading } from "@components/Loading";
 import { NativeBaseProvider } from "native-base";
 import { Routes } from "@routes/index";
@@ -9,6 +10,7 @@ import { useFonts } from "expo-font";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+
   return (
     <NativeBaseProvider theme={THEME}>
       <StatusBar
@@ -16,7 +18,9 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <Routes /> : <Loading />}
+      <AuthContextProvider>
+        {fontsLoaded ? <Routes /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
