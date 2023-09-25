@@ -89,8 +89,6 @@ api.registerInterceptTokenManager = (signOut) => {
                 request.onSuccess(data.token);
               });
 
-              console.log("token Atualizado", data.token);
-
               resolve(api(originalRequestConfig));
             } catch (error: any) {
               failedQueue.forEach((request) => {
